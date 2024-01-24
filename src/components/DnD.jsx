@@ -12,8 +12,8 @@ const DnD = () => {
     const handleDragEnd = (result) => {
         console.log(result);
         const { source, destination } = result;
-        
-        setItems2(prev=> [...prev,items[source.index] + 'new'])
+
+        setItems2(prev => [...prev, items[source.index] + 'new'])
     };
 
     return (
@@ -64,14 +64,17 @@ const DnD = () => {
                     )
                     }
                 </Droppable>
+
                 <Droppable droppableId='element-drop-source' type='column'>
-                    {(provided,snapshot) => (
+                    {(provided, snapshot) => (
                         <Box
                             {...provided.droppableProps}
                             ref={provided.innerRef}
-                        // style={{ display: "flex", overflowX: "auto", justifyContent: "center", margin: 20 }}
-                        bgColor={snapshot.isUsingPlaceholder && 'red'}
-                        minH={'250px'}
+                            // style={{ display: "flex", overflowX: "auto", justifyContent: "center", margin: 20 }}
+                            bgColor={'red'}
+                            border="1px solid"
+                            minW={'200px'}
+                            minH={'250px'}
                         >
 
                             {
@@ -79,6 +82,7 @@ const DnD = () => {
                                     key={item}
                                     draggableId={item}
                                     index={index}
+                                    isDragDisabled={true}
                                 >
                                     {(provided) => (
                                         <Box
@@ -100,12 +104,7 @@ const DnD = () => {
                                     )}
                                 </Draggable>)
                             }
-
-
-                            {/* <GridItem>Hello</GridItem> */}
                             {provided.placeholder}
-
-
                         </Box>
                     )
                     }
